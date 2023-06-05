@@ -1,0 +1,21 @@
+# @format
+
+version: "3"
+services:
+  php:
+    container_name: ${COMPOSE_PROJECT_NAME}-php
+    build:
+      context: ./docker-local/php/
+    privileged: true
+    volumes:
+      - ./src/:/usr/share/nginx/html
+    tty: true
+    platform: linux/x86_64
+    networks:
+      - common
+networks:
+  common:
+    driver: bridge
+volumes:
+  dbdata-storage:
+    driver: local
